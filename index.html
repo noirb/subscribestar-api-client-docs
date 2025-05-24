@@ -156,21 +156,21 @@
                     <main>
                         <h1 id="usage--examples"><a class="header" href="#usage--examples">Usage &amp; Examples</a></h1>
 <h2 id="before-getting-started"><a class="header" href="#before-getting-started">Before Getting Started</a></h2>
-<p>Before using this plugin, you should first <a href="./Registering.html">Register an API Integration</a> with SubscribeStar.</p>
+<p>Before using this plugin, you should first <a href="./how-to/Registering.html">Register an API Integration</a> with SubscribeStar.</p>
 <p>This plugin supports a few different authentication flows with different trade-offs.</p>
-<h2 id="1-simple--automatic"><a class="header" href="#1-simple--automatic">1. <a href="./SimpleSetup.html">Simple &amp; Automatic</a></a></h2>
+<h2 id="1-simple--automatic"><a class="header" href="#1-simple--automatic">1. <a href="./how-to/SimpleSetup.html">Simple &amp; Automatic</a></a></h2>
 <p>This is for you if you just want to check that your users are members of your campaign and find out which
 tier they are subscribed to. This allows you to easily do things like unlock specific in-game content for
 users subscribed to specific tiers, display information to the user about their subscription, etc.</p>
 <p>This can be done with just a couple of BP nodes or a handful of lines of C++.</p>
-<p><a href="./SimpleSetup.html">Simple Setup</a></p>
-<h2 id="2-custom"><a class="header" href="#2-custom">2. <a href="./CustomSetup.html">Custom</a></a></h2>
+<p><a href="./how-to/SimpleSetup.html">Simple Setup</a></p>
+<h2 id="2-custom"><a class="header" href="#2-custom">2. <a href="./how-to/CustomSetup.html">Custom</a></a></h2>
 <p>If your needs are more complex, for example maybe you are building an MMO or competitive online shooter and have your
 own account system you are linking to SubscribeStar, or perhaps you already have your own web service which connects to
 SubscribeStar for other reasons and just need to be able to pull specific data out of it from the game client.</p>
 <p>Going this route is more complex, but allows you to customize exactly where your tokens are stored, the data fetched from
 SubscribeStar, how that gets tied into whatever other user data you may have, etc.</p>
-<p><a href="./CustomSetup.html">Custom Setup</a></p>
+<p><a href="./how-to/CustomSetup.html">Custom Setup</a></p>
 <hr />
 <h1 id="running-the-examples"><a class="header" href="#running-the-examples">Running the examples</a></h1>
 <p>There is a demo map to show basic functionality in:</p>
@@ -185,7 +185,7 @@ Error: Cannot perform SubscribeStar authentication: No valid client ID was given
 <p><code>/Examples/UI/WBP_SubscribeStarLogin_UMGBrowser</code></p>
 <p>Open these and enter the blueprint graph, where you will see the Client ID and Client Secret fields need to be filled in.</p>
 <p><img src="../assets/tutorial/bp_client_info.png" alt="" /></p>
-<p>Enter the values for the integration <a href="./Registering.html">you created</a> in your SubscribeStar profile, run the <code>LoginDemo</code> map, and it should now allow you to sign in!</p>
+<p>Enter the values for the integration <a href="./how-to/Registering.html">you created</a> in your SubscribeStar profile, run the <code>LoginDemo</code> map, and it should now allow you to sign in!</p>
 <p>It is up to you to decide how to store and handle the Client ID and Client Secret. You could store these as encrypted
 strings which are only decrypted just before using them, or you might store them outside of your application somewhere
 and only fetch/download them when needed, etc. If you are developing an open-source project, under no circumstance should
