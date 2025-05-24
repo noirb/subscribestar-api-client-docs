@@ -1,0 +1,251 @@
+<!DOCTYPE HTML>
+<html lang="en" class="ayu sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>How do I use this? - NB SubscribeStar API Integration</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "ayu" : "ayu";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('ayu')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">NB SubscribeStar API Integration</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="usage--examples"><a class="header" href="#usage--examples">Usage &amp; Examples</a></h1>
+<h2 id="before-getting-started"><a class="header" href="#before-getting-started">Before Getting Started</a></h2>
+<p>Before using this plugin, you should first <a href="./Registering.html">Register an API Integration</a> with SubscribeStar.</p>
+<p>This plugin supports a few different authentication flows with different trade-offs.</p>
+<h2 id="1-simple--automatic"><a class="header" href="#1-simple--automatic">1. <a href="./SimpleSetup.html">Simple &amp; Automatic</a></a></h2>
+<p>This is for you if you just want to check that your users are members of your campaign and find out which
+tier they are subscribed to. This allows you to easily do things like unlock specific in-game content for
+users subscribed to specific tiers, display information to the user about their subscription, etc.</p>
+<p>This can be done with just a couple of BP nodes or a handful of lines of C++.</p>
+<p><a href="./SimpleSetup.html">Simple Setup</a></p>
+<h2 id="2-custom"><a class="header" href="#2-custom">2. <a href="./CustomSetup.html">Custom</a></a></h2>
+<p>If your needs are more complex, for example maybe you are building an MMO or competitive online shooter and have your
+own account system you are linking to SubscribeStar, or perhaps you already have your own web service which connects to
+SubscribeStar for other reasons and just need to be able to pull specific data out of it from the game client.</p>
+<p>Going this route is more complex, but allows you to customize exactly where your tokens are stored, the data fetched from
+SubscribeStar, how that gets tied into whatever other user data you may have, etc.</p>
+<p><a href="./CustomSetup.html">Custom Setup</a></p>
+<hr />
+<h1 id="running-the-examples"><a class="header" href="#running-the-examples">Running the examples</a></h1>
+<p>There is a demo map to show basic functionality in:</p>
+<p><code>Engine/Plugins/NBSubscribeStarAPIClient Content/Examples/Maps/LoginDemo</code></p>
+<p>However, if you run this map you will notice that the login buttons fail with the error:</p>
+<pre><code class="language-bash">Error: Ensure condition failed: !ClientID.IsEmpty()  [...\NBPerformSSAuthenticationAction.cpp] [Line: 123]
+Error: Cannot perform SubscribeStar authentication: No valid client ID was given!
+</code></pre>
+<p>This is because you have not yet provided your SubscribeStar client ID and secret.</p>
+<p>The blueprints for the UI in the demo map are located in:</p>
+<p><code>/Examples/UI/WBP_SubscribeStarLogin_WebBrowser</code></p>
+<p><code>/Examples/UI/WBP_SubscribeStarLogin_UMGBrowser</code></p>
+<p>Open these and enter the blueprint graph, where you will see the Client ID and Client Secret fields need to be filled in.</p>
+<p><img src="../assets/tutorial/bp_client_info.png" alt="" /></p>
+<p>Enter the values for the integration <a href="./Registering.html">you created</a> in your SubscribeStar profile, run the <code>LoginDemo</code> map, and it should now allow you to sign in!</p>
+<p>It is up to you to decide how to store and handle the Client ID and Client Secret. You could store these as encrypted
+strings which are only decrypted just before using them, or you might store them outside of your application somewhere
+and only fetch/download them when needed, etc. If you are developing an open-source project, under no circumstance should
+you commit these strings to source control.</p>
+<h1 id="pages"><a class="header" href="#pages">Pages</a></h1>
+<ul>
+<li><a href="/subscribestar-api-client-docs/how-to/Registering.html">Registering an API Client</a></li>
+<li><a href="/subscribestar-api-client-docs/how-to/SimpleSetup.html">Simple Setup</a></li>
+<li><a href="/subscribestar-api-client-docs/how-to/CustomSetup.html">Custom Configuration &amp; Usage</a></li>
+<li><a href="/subscribestar-api-client-docs/how-to/Troubleshooting.html">Troubleshooting</a></li>
+</ul>
+<p><br/><br/>
+<br/><br/></p>
+<hr />
+<blockquote>
+<p>For any questions, help, suggestions or feature requests, please feel free to contact me at <a href="mailto:nbpsup@gmail.com">nbpsup@gmail.com</a></p>
+</blockquote>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+                            <a rel="next prefetch" href="../how-to/Registering.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+                    <a rel="next prefetch" href="../how-to/Registering.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
